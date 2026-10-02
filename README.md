@@ -1,37 +1,57 @@
 # 🍳 AI Recipe Generator
 
-An AI-powered recipe assistant that helps you decide what to cook from the ingredients you already have.
+An AI-powered recipe assistant built for my sister, who loves cooking but often struggles to find recipes that actually work with the ingredients she has at home.
 
-You can **enter ingredients manually or upload a photo of your ingredients**. The app uses AI to suggest five recipes, lets you choose one, and then generates complete step-by-step cooking instructions.
+Instead of searching through YouTube videos and discovering halfway through that a recipe needs ingredients she doesn't have, she can simply **enter the ingredients she has or upload a photo of them** and get useful recipe options instantly.
+
+## 💡 Why I Built This
+
+My sister enjoys cooking, but her usual process was:
+
+1. Search YouTube for a recipe.
+2. Find a recipe that looks good.
+3. Start checking the ingredients.
+4. Realize she is missing some of them.
+5. Search again for another recipe.
+6. Sometimes find a recipe with unclear or inconvenient instructions.
+
+I wanted to make that process much easier.
+
+With this app, she can start with **what she already has**, instead of starting with a recipe.
 
 ## ✨ Features
 
 - 🥕 Enter ingredients manually
-- 📷 Upload a photo of ingredients
-- 🤖 AI-powered ingredient and recipe generation
-- 🍽️ Get five recipe suggestions
-- 👨‍🍳 Select a recipe and receive detailed cooking instructions
-- 🥗 Dietary preference support
+- 📷 Upload a photo of your ingredients
+- 🤖 AI-powered image understanding
+- 🍽️ Get 5 recipe suggestions
+- 👆 Choose the recipe you want to make
+- 👨‍🍳 Get complete step-by-step instructions
+- 🥗 Dietary preference selection
 - 🌎 Cuisine selection
-- 👥 Adjustable servings
-- ⏱️ Cooking-time preferences
-- 🔄 Choose another recipe without restarting the app
+- 👥 Adjustable serving size
+- ⏱️ Maximum cooking-time preference
+- 🔄 Easily choose another recipe
 
 ## 🧠 How It Works
 
 ```text
-Ingredients / Photo
-        ↓
-   AI analyzes input
-        ↓
-  5 recipe suggestions
-        ↓
-   User selects one
-        ↓
- Complete recipe + instructions
+        Ingredients
+       /           \
+   Text Input     Photo Upload
+       \           /
+        \         /
+         AI Analysis
+             ↓
+      5 Recipe Suggestions
+             ↓
+       Choose a Recipe
+             ↓
+     Complete Recipe
+      + Instructions
 ```
 
-For image uploads, the AI analyzes the uploaded photo and combines the detected ingredients with any ingredients entered manually.
+When a photo is uploaded, the AI analyzes the visible ingredients and combines them with any ingredients entered manually.
 
 ## 🛠️ Tech Stack
 
@@ -40,10 +60,25 @@ For image uploads, the AI analyzes the uploaded photo and combines the detected 
 - **Backboard**
 - **Kimi K2.6**
 - **OpenRouter**
+- **Render**
 
-Backboard is used as the AI interface and memory layer, while Kimi K2.6 handles the recipe generation and image understanding.
+### AI
 
-## 🚀 Run Locally
+The application uses **Kimi K2.6**, an open-weight model, through Backboard and OpenRouter. Kimi K2.6 supports image input, allowing the application to analyze uploaded ingredient photos.
+
+### Backboard
+
+Backboard provides the API layer used to communicate with the model and manage the application's AI requests. Its message API supports both normal text requests and file attachments.
+
+### Deployment
+
+The application is deployed publicly using **Render**.
+
+## 🚀 Live Demo
+
+👉 **[Try the AI Recipe Generator](https://ai-recipe-gen-pddb.onrender.com/)**
+
+## 💻 Run Locally
 
 ### 1. Clone the repository
 
@@ -58,7 +93,7 @@ cd ai-recipe-generator
 python -m venv .venv
 ```
 
-Activate it on Windows:
+On Windows:
 
 ```powershell
 .venv\Scripts\Activate.ps1
@@ -70,9 +105,9 @@ Activate it on Windows:
 pip install -r requirements.txt
 ```
 
-### 4. Configure your API key
+### 4. Add your Backboard API key
 
-Set your Backboard API key as an environment variable.
+Set the API key as an environment variable.
 
 PowerShell:
 
@@ -80,13 +115,13 @@ PowerShell:
 $env:BACKBOARD_API_KEY="your_api_key"
 ```
 
-### 5. Start the application
+### 5. Run the application
 
 ```powershell
 python -m streamlit run main.py
 ```
 
-The app will open locally in your browser.
+The application will open in your browser.
 
 ## 🔐 Environment Variables
 
@@ -106,30 +141,32 @@ ai-recipe-generator/
 ├── main.py
 ├── backboard_client.py
 ├── requirements.txt
-├── .gitignore
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
-## 🌱 Open AI / Open Innovation
+## 🌱 Why Open Innovation Matters
 
-This project uses an open-weight AI model through Backboard and OpenRouter rather than building the application around a proprietary closed model.
+This project uses an **open-weight AI model** rather than building the application around a closed model.
 
-Using an open-weight model makes it possible to experiment with AI capabilities while keeping the application architecture flexible and portable.
+For this project, that provides flexibility to experiment with different models and AI providers while keeping the application architecture independent from a single proprietary model.
+
+Using an open-weight model with image understanding also made it possible to extend the original idea from simple text-based recipe generation into a more useful workflow where users can show the AI what ingredients they actually have.
 
 ## 🎯 Hacktoberfest Weekend Challenge
 
-This project was created for the **DEV Hacktoberfest Weekend Challenge**.
+This project was built for the **DEV Hacktoberfest Weekend Challenge: Build for a Friend**.
 
-The goal is to build a practical AI-powered application that solves an everyday problem: helping people decide what to cook from the ingredients they already have.
+The challenge asks builders to create something with open-source AI at its core that solves a real problem for a friend or loved one.
 
-## 📸 Demo
+For this project, that person is my sister, and the problem is simple:
 
-A live demo will be available here:
+> **She loves cooking, but finding a good recipe that matches the ingredients she actually has can take too much time.**
 
-**[Live Demo](YOUR_RENDER_URL)**
+So I built a tool that starts with her ingredients instead of making her search for recipes first.
 
 ## 👨‍💻 Author
 
 **MA10**
 
-Built with Python, Streamlit, Backboard, and Kimi K2.6.
+Built with ❤️ for my sister.
