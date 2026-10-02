@@ -83,7 +83,7 @@ The application is deployed publicly using **Render**.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ai-recipe-generator.git
+git clone https://github.com/ma10-yt/ai-recipe-gen.git
 cd ai-recipe-generator
 ```
 
